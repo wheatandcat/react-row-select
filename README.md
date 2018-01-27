@@ -59,7 +59,7 @@ render ( <Table onCheck={() => {}} defaultCheckeds={[]} >...)
 |defaultCheckeds|Array<number>|default checked indexs|
 
 ## DEMOS
- * examples
+* examples
   * https://wheatandcat.github.io/examples-pages/react-row-select-table/index.html?v1
 
 * storybook
