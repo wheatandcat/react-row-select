@@ -7,3 +7,5 @@ jest-setup.js
 .prettierrc
 examples/
 .cache
+.babelrc
+.prettierrc

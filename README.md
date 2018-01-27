@@ -1,4 +1,6 @@
-# react-row-select
+# react-row-select-table
+
+[![npm version](https://badge.fury.io/js/react-row-select-table.svg)](https://badge.fury.io/js/react-row-select-table)
 
 simple data table react Component
 
@@ -8,7 +10,7 @@ simple data table react Component
 
 ## Installation
 ```js
-npm i react-row-select
+npm i react-row-select-table
 ```
 
 ## Usage
@@ -16,7 +18,7 @@ npm i react-row-select
 ### src
 ```js
 import React from "react"
-import Table, {Thead, Tbody, Tr, Th, Td} from "/react-row-select"
+import Table, {Thead, Tbody, Tr, Th, Td} from "react-row-select-table"
 
 const Custom = () =>  (
   <Table onCheck={value => console.log(value)} defaultCheckeds={[1,3]}>
@@ -46,7 +48,7 @@ const Custom = () =>  (
 
 ### Props
 ```js
-import Table from "/react-row-select"
+import Table from "react-row-select-table"
 
 render ( <Table onCheck={() => {}} defaultCheckeds={[]} >...)
 ```

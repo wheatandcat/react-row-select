@@ -8,7 +8,7 @@ const Custom = () => (
     <h5>
       github:{" "}
       <a
-        href="hhttps://github.com/wheatandcat/react-row-select-table"
+        href="https://github.com/wheatandcat/react-row-select-table"
         target="_black"
       >
         https://github.com/wheatandcat/react-row-select-table
@@ -45,7 +45,7 @@ const Custom = () => (
         <code className="language-jsx">
           {`
       import React from "react"
-      import Table, {Thead, Tbody, Tr, Th, Td} from "/react-row-select"
+      import Table, {Thead, Tbody, Tr, Th, Td} from "react-row-select-table"
 
       const Custom = () => (
         <Table onCheck={value => console.log(value)} defaultCheckeds={[1,3]}>
