@@ -1,1 +1,7 @@
-// @flow
+export { default } from "./components/CustomTable"
+export { default as BaseTable } from "./components/Table"
+export { default as Thead } from "./components/Thead"
+export { default as Tbody } from "./components/Tbody"
+export { default as Tr } from "./components/Tr"
+export { default as Th } from "./components/Th"
+export { default as Td } from "./components/Td"

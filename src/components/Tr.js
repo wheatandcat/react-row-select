@@ -1,23 +1,40 @@
-// @flow
 import React, { Component, Children, type Node } from "react"
 import PropTypes from "prop-types"
+import styled, { css } from "styled-components"
+
+const CheckBoxTh = styled.th`
+  width: 3.5rem;
+  cursor: pointer;
+  text-align: left;
+  font-weight: normal;
+`
+
+const CheckBoxTd = styled.td`
+  width: 3.5rem;
+  cursor: pointer;
+`
 
 class Tr extends Component {
-  state = { typeName: null }
+  state = { typeName: null, checked: false }
 
   static contextTypes = {
-    onCheck: PropTypes.func
+    onCheck: PropTypes.func,
+    onCheckAll: PropTypes.func,
+    isChecked: PropTypes.func,
   }
 
   async componentWillMount() {
-    console.log(this.context)
-    this.context.onCheck("test")
-
     const types = await Children.map(this.props.children, item => ({
-      name: item.type.name
+      name: item.type.name,
     }))
 
-    this.setState({ typeName: types[0].name })
+    this.setState({
+      typeName: types[0].name,
+      checked:
+        types[0].name === "Td"
+          ? this.context.isChecked(this.props.index)
+          : false,
+    })
   }
 
   render() {
@@ -26,10 +43,40 @@ class Tr extends Component {
     }
 
     return (
-      <tr>
-        <td>
-          <input type="checkbox" name="riyu" value="3" />
-        </td>
+      <tr
+        onClick={() => {
+          if (this.state.typeName === "Th") {
+            return
+          }
+
+          this.context.onCheck(this.props.index, !this.state.checked)
+          this.setState({ checked: !this.state.checked })
+        }}
+        className={` ${this.state.typeName === "Td" ? "tr-body" : ""} ${
+          this.state.typeName === "Td" &&
+          this.context.isChecked(this.props.index)
+            ? "tr-checked"
+            : ""
+        }`}
+      >
+        {this.state.typeName === "Th" ? (
+          <CheckBoxTh
+            onClick={() => {
+              this.context.onCheckAll(!this.state.checked)
+              this.setState({ checked: !this.state.checked })
+            }}
+          >
+            <input type="checkbox" checked={this.state.checked} readOnly />
+          </CheckBoxTh>
+        ) : (
+          <CheckBoxTd>
+            <input
+              type="checkbox"
+              checked={this.context.isChecked(this.props.index)}
+              readOnly
+            />
+          </CheckBoxTd>
+        )}
         {this.props.children}
       </tr>
     )

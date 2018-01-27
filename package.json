@@ -1,36 +1,37 @@
 {
-  "name": "react-row-select",
-  "version": "0.5.1",
+  "name": "react-row-select-table",
+  "version": "0.5.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "start": "NODE_ENV=development parcel ./src/index.html",
+    "examole-build": "parcel build ./src/index.html -d ./examples/ --no-minify",
     "build": "run-s build:*",
     "build:init": "rm -rf dist && mkdir dist",
     "build:js": "babel src --out-dir dist",
-    "build:install": "cp package.json dist/ && cd dist && yarn install --production",
+    "build:install":
+      "cp package.json dist/ && cd dist && yarn install --production",
     "build:chmod": "chmod -R 777 dist/*.js",
-    "storybook": "STORYBOOK_ENV=storybook start-storybook -p 9009",
-    "build-storybook": "STORYBOOK_ENV=storybook build-storybook",
-    "deploy-storybook": "STORYBOOK_ENV=storybook storybook-to-ghpages"
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wheatandcat/react-row-select.git"
+    "url": "git+https://github.com/wheatandcat/react-row-select-table.git"
   },
-  "keywords": [
-    "react"
-  ],
+  "keywords": ["react"],
   "author": "wheatandcat",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wheatandcat/react-row-select/issues"
+    "url": "https://github.com/wheatandcat/react-row-select-table/issues"
   },
   "storybook-deployer": {
     "gitUsername": "wheatandcat",
     "gitEmail": "wheatandcat@gamail.com",
-    "commitMessage": "react-row-select storybook to GitHub Pages"
+    "commitMessage": "react-row-select-table storybook to GitHub Pages"
   },
-  "homepage": "https://github.com/wheatandcat/react-row-select#readme",
+  "homepage": "https://github.com/wheatandcat/react-row-select-table#readme",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -60,6 +61,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "flow-bin": "^0.62.0",
     "npm-run-all": "^4.1.2",
+    "parcel-bundler": "^1.5.1",
     "prettier": "^1.9.2"
   }
 }

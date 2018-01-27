@@ -1,12 +1,33 @@
-// @flow
-import React, { type Node } from "react"
+import React, { Component, Children } from "react"
+import PropTypes from "prop-types"
 
-type Props = {
-  children?: Node
-}
+class Tbody extends Component {
+  state = { trs: null }
 
-const Tbody = ({ children }: Props) => {
-  return <tbody>{children}</tbody>
+  static contextTypes = {
+    onRowCount: PropTypes.func,
+  }
+
+  async componentWillMount() {
+    const trs = await Children.map(this.props.children, (item, index) => ({
+      ...item,
+      props: {
+        ...item.props,
+        index,
+      },
+    }))
+
+    await this.context.onRowCount(trs.length)
+
+    this.setState({ trs })
+  }
+  render() {
+    if (this.state.trs === null) {
+      return null
+    }
+
+    return <tbody>{this.state.trs.map(tr => tr)}</tbody>
+  }
 }
 
 export default Tbody

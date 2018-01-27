@@ -1,12 +1,17 @@
 // @flow
-import React, { Children, type Node } from "react"
+import React, { type Node } from "react"
+import styled from "styled-components"
 
 type Props = {
-  children?: Node
+  children?: Node,
 }
 
+const StyledTh = styled.th`
+  font-weight: normal;
+`
+
 const Th = ({ children }: Props) => {
-  return <th>{children}</th>
+  return <StyledTh>{children}</StyledTh>
 }
 
 export default Th
