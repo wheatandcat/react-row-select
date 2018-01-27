@@ -58,6 +58,71 @@ render ( <Table onCheck={() => {}} defaultCheckeds={[]} >...)
 |onCheck|func|Callback checked indexs <br><br>Signature:<br> function(values: Array<number>) => void|
 |defaultCheckeds|Array<number>|default checked indexs|
 
+## Design Customize
+
+```js
+import React from "react"
+import {BaseTable ,Thead, Tbody, Tr, Th, Td} from "react-row-select-table"
+import styled from "styled-components"
+
+const Table = styled(BaseTable)`
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr.tr-body:hover {
+      background-color: #f5f5f5;
+    }
+
+    tr.tr-checked {
+      background-color: #f5f5f5;
+    }
+
+    th {
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    td {
+      padding: 0.5rem;
+      text-align: left;
+    }
+  }
+`
+
+
+const Custom = () =>  (
+  <Table onCheck={value => console.log(value)} defaultCheckeds={[1,3]}>
+    <Thead>
+      <Tr>
+        <Th>id</Th>
+        <Th>name</Th>
+      </Tr>
+    </Thead>
+    <Tbody>
+      <Tr>
+        <Td>1</Td>
+        <Td>tarou</Td>
+      </Tr>
+      <Tr>
+        <Td>2</Td>
+        <Td>zirou</Td>
+      </Tr>
+      <Tr>
+        <Td>3</Td>
+        <Td>subrou</Td>
+      </Tr>
+    </Tbody>
+  </Table>
+)
+```
+
+
+
 ## DEMOS
 * examples
   * https://wheatandcat.github.io/examples-pages/react-row-select-table/index.html?v1
