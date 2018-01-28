@@ -61,6 +61,30 @@ storiesOf("DefaultTable", module)
       </Tbody>
     </CustomTable>
   ))
+  .add("isCheckRow = false", () => (
+    <CustomTable onCheck={action("onCheck")}>
+      <Thead>
+        <Tr>
+          <Th>id</Th>
+          <Th>name</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        <Tr isCheckRow={false}>
+          <Td>1</Td>
+          <Td>tarou</Td>
+        </Tr>
+        <Tr isCheckRow={false}>
+          <Td>2</Td>
+          <Td>zirou</Td>
+        </Tr>
+        <Tr isCheckRow={false}>
+          <Td>3</Td>
+          <Td>subrou</Td>
+        </Tr>
+      </Tbody>
+    </CustomTable>
+  ))
 
 storiesOf("BaseTable", module)
   .addDecorator(withKnobs)

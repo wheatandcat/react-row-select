@@ -47,16 +47,31 @@ const Custom = () =>  (
 ```
 
 ### Props
+
+#### Table
 ```js
 import Table from "react-row-select-table"
 
 render ( <Table onCheck={() => {}} defaultCheckeds={[]} >...)
 ```
 
-|name|Type|Description|
-|:---|:---|:---|
-|onCheck|func|Callback checked indexs <br><br>Signature:<br> function(values: Array<number>) => void|
-|defaultCheckeds|Array<number>|default checked indexs|
+|name|Type|default|Description|
+|:---|:---|:---|:---|
+|onCheck|func||Callback checked indexs <br><br>Signature:<br> function(values: Array<number>) => void|
+|defaultCheckeds|Array<number>|[]|default checked indexs|
+
+#### Tr
+```js
+import { Tr } from "react-row-select-table"
+
+render ( <Tr isCheckRow>...)
+```
+
+|name|Type|default|Description|
+|:---|:---|:---|:---|
+|isCheckRow|boolean|true|Set the check box check box to Row|
+
+
 
 ## Design Customize
 

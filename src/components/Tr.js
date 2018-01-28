@@ -15,6 +15,14 @@ const CheckBoxTd = styled.td`
 `
 
 class Tr extends Component {
+  static propTypes = {
+    isCheckRow: PropTypes.boolean,
+  }
+
+  static defaultProps = {
+    isCheckRow: true,
+  }
+
   state = { typeName: null, checked: false }
 
   static contextTypes = {
@@ -49,6 +57,10 @@ class Tr extends Component {
             return
           }
 
+          if (!this.props.isCheckRow) {
+            return
+          }
+
           this.context.onCheck(this.props.index, !this.state.checked)
           this.setState({ checked: !this.state.checked })
         }}
@@ -69,7 +81,16 @@ class Tr extends Component {
             <input type="checkbox" checked={this.state.checked} readOnly />
           </CheckBoxTh>
         ) : (
-          <CheckBoxTd>
+          <CheckBoxTd
+            onClick={() => {
+              if (this.props.isCheckRow) {
+                return
+              }
+
+              this.context.onCheck(this.props.index, !this.state.checked)
+              this.setState({ checked: !this.state.checked })
+            }}
+          >
             <input
               type="checkbox"
               checked={this.context.isChecked(this.props.index)}
