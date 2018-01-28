@@ -12,6 +12,16 @@ const CustomTable = styled.div`
       border-bottom: 1px solid #ddd;
     }
 
+    th:first-child {
+      text-align: center;
+      width: 2rem;
+    }
+
+    td:first-child {
+      text-align: center;
+      width: 2rem;
+    }
+
     tr.tr-body:hover {
       background-color: #f5f5f5;
     }
@@ -23,6 +33,7 @@ const CustomTable = styled.div`
     th {
       padding: 0.5rem;
       text-align: left;
+      color: #9a9a9a;
     }
 
     td {
