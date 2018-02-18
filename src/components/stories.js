@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { storiesOf } from "@storybook/react"
-import { withKnobs } from "@storybook/addon-knobs"
+import { withKnobs, text } from "@storybook/addon-knobs"
 import { action } from "@storybook/addon-actions"
 import Table from "./Table"
 import Thead from "./Thead"
@@ -24,7 +24,7 @@ storiesOf("DefaultTable", module)
       <Tbody>
         <Tr>
           <Td>1</Td>
-          <Td>tarou</Td>
+          <Td>tarou{text("Label", "")}</Td>
         </Tr>
         <Tr>
           <Td>2</Td>
@@ -85,7 +85,17 @@ storiesOf("DefaultTable", module)
       </Tbody>
     </CustomTable>
   ))
-
+  .add("row 0", () => (
+    <CustomTable onCheck={action("onCheck")}>
+      <Thead>
+        <Tr>
+          <Th>id</Th>
+          <Th>name</Th>
+        </Tr>
+      </Thead>
+      <Tbody />
+    </CustomTable>
+  ))
 storiesOf("BaseTable", module)
   .addDecorator(withKnobs)
   .add("BaseTable", () => (

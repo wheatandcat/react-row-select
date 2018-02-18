@@ -1,12 +1,12 @@
-// @flow
-import React, { type Node } from "react"
+import React, { Component } from "react"
 
-type Props = {
-  children?: Node,
-}
+class Td extends Component {
+  componentWillReceiveProps(nextProps) {}
+  componentWillUpdate(nextProps) {}
 
-const Td = ({ children }: Props) => {
-  return <td>{children}</td>
+  render() {
+    return <td>{this.props.children}</td>
+  }
 }
 
 export default Td

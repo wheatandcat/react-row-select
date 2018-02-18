@@ -16,7 +16,7 @@ const CheckBoxTd = styled.td`
 
 class Tr extends Component {
   static propTypes = {
-    isCheckRow: PropTypes.boolean,
+    isCheckRow: PropTypes.bool,
   }
 
   static defaultProps = {

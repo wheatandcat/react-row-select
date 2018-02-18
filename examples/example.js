@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "react-dom"
-import Table, { Thead, Tbody, Tr, Th, Td } from "./"
+import Table, { Thead, Tbody, Tr, Th, Td } from "../dist/"
 
 const Custom = () => (
   <div>

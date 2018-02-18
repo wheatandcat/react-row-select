@@ -1,11 +1,11 @@
 {
   "name": "react-row-select-table",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "simple data table react Component",
   "main": "dist/index.js",
   "scripts": {
-    "start": "NODE_ENV=development parcel ./src/index.html",
-    "examole-build": "parcel build ./src/index.html -d ./examples/ --no-minify",
+    "start": "parcel ./examples/index.html",
+    "example": "parcel build ./examples/index.html -d ./examples-dist/ --no-minify",
     "build": "run-s build:*",
     "build:init": "rm -rf dist && mkdir dist",
     "build:js": "babel src --out-dir dist",

@@ -9,7 +9,15 @@ class Tbody extends Component {
   }
 
   async componentWillMount() {
-    const trs = await Children.map(this.props.children, (item, index) => ({
+    await this.setTrs(this.props)
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    await this.setTrs(nextProps)
+  }
+
+  setTrs = async props => {
+    const trs = await Children.map(props.children, (item, index) => ({
       ...item,
       props: {
         ...item.props,
@@ -17,10 +25,17 @@ class Tbody extends Component {
       },
     }))
 
-    await this.context.onRowCount(trs.length)
+    if (!trs) {
+      return
+    }
 
-    this.setState({ trs })
+    if ((this.state.trs ? this.state.trs.length : 0) !== trs.length) {
+      await this.context.onRowCount(trs.length)
+    }
+
+    await this.setState({ trs })
   }
+
   render() {
     if (this.state.trs === null) {
       return null
