@@ -9,8 +9,7 @@
     "build": "run-s build:*",
     "build:init": "rm -rf dist && mkdir dist",
     "build:js": "babel src --out-dir dist",
-    "build:install":
-      "cp package.json dist/ && cd dist && yarn install --production",
+    "build:install": "cp package.json dist/ && cd dist && yarn install --production",
     "build:chmod": "chmod -R 777 dist/*.js",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
@@ -20,7 +19,9 @@
     "type": "git",
     "url": "git+https://github.com/wheatandcat/react-row-select-table.git"
   },
-  "keywords": ["react"],
+  "keywords": [
+    "react"
+  ],
   "author": "wheatandcat",
   "license": "MIT",
   "bugs": {
@@ -35,16 +36,16 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "styled-components": "^2.4.0"
+    "styled-components": "^3.2.1"
   },
   "devDependencies": {
     "@personare/react-storybook-decorator-github-corner": "^0.1.5",
-    "@storybook/addon-actions": "^3.2.19",
-    "@storybook/addon-knobs": "^3.2.19",
-    "@storybook/addon-links": "^3.2.19",
-    "@storybook/addon-options": "^3.2.19",
-    "@storybook/react": "^3.2.19",
-    "@storybook/storybook-deployer": "^2.2.0",
+    "@storybook/addon-actions": "^3.3.15",
+    "@storybook/addon-knobs": "^3.3.15",
+    "@storybook/addon-links": "^3.3.15",
+    "@storybook/addon-options": "^3.3.15",
+    "@storybook/react": "^3.3.15",
+    "@storybook/storybook-deployer": "^2.3.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
@@ -62,6 +63,6 @@
     "flow-bin": "^0.62.0",
     "npm-run-all": "^4.1.2",
     "parcel-bundler": "^1.5.1",
-    "prettier": "^1.9.2"
+    "prettier": "^1.11.1"
   }
 }
