@@ -1,9 +1,10 @@
 // @flow
 import React from "react"
 import { storiesOf } from "@storybook/react"
-import { withKnobs, text } from "@storybook/addon-knobs"
+import { withKnobs, array } from "@storybook/addon-knobs"
 import { action } from "@storybook/addon-actions"
 import Table from "./Table"
+import CustomSyncTable from "./CustomSyncTable"
 import Thead from "./Thead"
 import Tbody from "./Tbody"
 import Tr from "./Tr"
@@ -24,7 +25,7 @@ storiesOf("DefaultTable", module)
       <Tbody>
         <Tr>
           <Td>1</Td>
-          <Td>tarou{text("Label", "")}</Td>
+          <Td>tarou</Td>
         </Tr>
         <Tr>
           <Td>2</Td>
@@ -95,6 +96,30 @@ storiesOf("DefaultTable", module)
       </Thead>
       <Tbody />
     </CustomTable>
+  ))
+  .add("CustomSyncTable", () => (
+    <CustomSyncTable onCheck={action("onCheck")} checkeds={[1, 2, 3]}>
+      <Thead>
+        <Tr>
+          <Th>id</Th>
+          <Th>name</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        <Tr>
+          <Td>1</Td>
+          <Td>tarou</Td>
+        </Tr>
+        <Tr>
+          <Td>2</Td>
+          <Td>zirou</Td>
+        </Tr>
+        <Tr>
+          <Td>3</Td>
+          <Td>subrou</Td>
+        </Tr>
+      </Tbody>
+    </CustomSyncTable>
   ))
 storiesOf("BaseTable", module)
   .addDecorator(withKnobs)
