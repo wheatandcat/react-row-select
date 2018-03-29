@@ -36,12 +36,17 @@ class Tr extends Component {
       name: item.type.name,
     }))
 
-    this.setState({
-      typeName: types[0].name,
+    let typeName = types[0].name
+    if (types[0].name === "h") {
+      typeName = "Th"
+    } else if (types[0].name === "t") {
+      typeName = "Td"
+    }
+
+    await this.setState({
+      typeName: typeName,
       checked:
-        types[0].name === "Td"
-          ? this.context.isChecked(this.props.index)
-          : false,
+        typeName === "Td" ? this.context.isChecked(this.props.index) : false,
     })
   }
 

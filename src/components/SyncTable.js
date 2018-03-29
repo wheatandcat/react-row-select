@@ -58,12 +58,12 @@ export default class extends Component {
 
     if (checked) {
       for (let i = 0; i < this.state.rowCount; i++) {
-        all.push(i)
+        await all.push(i)
       }
     }
 
     await this.setState({ checkeds: all })
-    return this.props.onCheck(all)
+    await this.props.onCheck(all)
   }
 
   isChecked = index => {
