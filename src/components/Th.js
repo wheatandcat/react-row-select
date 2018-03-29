@@ -14,4 +14,6 @@ const Th = ({ children }: Props) => {
   return <StyledTh>{children}</StyledTh>
 }
 
+Th.displayName = "Th"
+
 export default Th

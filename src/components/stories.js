@@ -15,14 +15,10 @@ import CustomTable from "./CustomTable"
 
 class Test extends Component {
   componentWillReceiveProps() {
-    console.log("componentWillReceiveProps")
     const root = ReactDOM.findDOMNode(this.root)
     if (!root) {
       return
     }
-
-    console.log(root)
-    console.log(root.offsetHeight)
   }
   render() {
     return (
@@ -145,7 +141,7 @@ storiesOf("DefaultTable", module)
     </CustomTable>
   ))
   .add("CustomSyncTable", () => (
-    <CustomSyncTable onCheck={action("onCheck")} checkeds={[1, 2, 3]}>
+    <CustomSyncTable onCheck={action("onCheck")} checkeds={[1, 2]}>
       <Thead>
         <Tr>
           <Th>id</Th>

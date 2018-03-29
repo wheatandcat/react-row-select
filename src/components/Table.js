@@ -4,13 +4,14 @@ import PropTypes from "prop-types"
 export default class extends Component {
   static propTypes = {
     onCheck: PropTypes.func,
-    defaultCheckeds: PropTypes.arrayOf(PropTypes.number),
+    checkeds: PropTypes.arrayOf(PropTypes.number),
   }
   static childContextTypes = {
     onCheck: PropTypes.func,
     onCheckAll: PropTypes.func,
     onRowCount: PropTypes.func,
     isChecked: PropTypes.func,
+    isCheckAll: PropTypes.func,
   }
 
   getChildContext() {
@@ -19,13 +20,18 @@ export default class extends Component {
       onCheckAll: this.onCheckAll,
       onRowCount: this.onRowCount,
       isChecked: this.isChecked,
+      isCheckAll: this.isCheckAll,
     }
   }
 
-  state = { checkeds: [], rowCount: 0 }
+  state = { checkeds: [], rowCount: 0, checkAll: false }
 
   componentWillMount() {
-    this.setState({ checkeds: this.props.defaultCheckeds || [] })
+    this.setState({ checkeds: this.props.checkeds || [] })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ checkeds: nextProps.checkeds || [] })
   }
 
   onRowCount = async rowCount => {
@@ -34,32 +40,39 @@ export default class extends Component {
     })
   }
 
-  onCheck = async (targetIndex, checked) => {
+  isCheckAll = () => {
+    return this.state.checkAll
+  }
+
+  onCheck = async targetIndex => {
     let checkeds = await this.state.checkeds
 
-    if (checked) {
-      checkeds = await [...this.state.checkeds, targetIndex].sort()
-    } else {
+    if (this.state.checkeds.indexOf(targetIndex) >= 0) {
       checkeds = await this.state.checkeds
         .filter(index => index !== targetIndex)
         .sort()
+    } else {
+      checkeds = await [...this.state.checkeds, targetIndex].sort()
     }
 
-    await this.setState({ checkeds })
+    await this.setState({
+      checkeds,
+      checkAll: checkeds.length === 0 ? false : this.state.checkAll,
+    })
     return this.props.onCheck(this.state.checkeds)
   }
 
-  onCheckAll = async checked => {
+  onCheckAll = async () => {
     let all = []
 
-    if (checked) {
+    if (!this.state.checkAll) {
       for (let i = 0; i < this.state.rowCount; i++) {
         all.push(i)
       }
     }
 
-    await this.setState({ checkeds: all })
-    return this.props.onCheck(all)
+    await this.setState({ checkeds: all, checkAll: !this.state.checkAll })
+    await this.props.onCheck(all)
   }
 
   isChecked = index => {

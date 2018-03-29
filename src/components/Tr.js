@@ -23,25 +23,23 @@ class Tr extends Component {
     isCheckRow: true,
   }
 
-  state = { typeName: null, checked: false }
+  state = { typeName: null }
 
   static contextTypes = {
     onCheck: PropTypes.func,
     onCheckAll: PropTypes.func,
     isChecked: PropTypes.func,
+    isCheckAll: PropTypes.func,
   }
 
   async componentWillMount() {
-    const types = await Children.map(this.props.children, item => ({
-      name: item.type.name,
-    }))
+    const types = await Children.map(this.props.children, item => {
+      return {
+        name: item.type.displayName,
+      }
+    })
 
-    let typeName = types[0].name
-    if (types[0].name === "h") {
-      typeName = "Th"
-    } else if (types[0].name === "t") {
-      typeName = "Td"
-    }
+    const typeName = types[0].name
 
     await this.setState({
       typeName: typeName,
@@ -66,8 +64,7 @@ class Tr extends Component {
             return
           }
 
-          this.context.onCheck(this.props.index, !this.state.checked)
-          this.setState({ checked: !this.state.checked })
+          this.context.onCheck(this.props.index)
         }}
         className={` ${this.state.typeName === "Td" ? "tr-body" : ""} ${
           this.state.typeName === "Td" &&
@@ -79,11 +76,14 @@ class Tr extends Component {
         {this.state.typeName === "Th" ? (
           <CheckBoxTh
             onClick={() => {
-              this.context.onCheckAll(!this.state.checked)
-              this.setState({ checked: !this.state.checked })
+              this.context.onCheckAll()
             }}
           >
-            <input type="checkbox" checked={this.state.checked} readOnly />
+            <input
+              type="checkbox"
+              checked={this.context.isCheckAll()}
+              readOnly
+            />
           </CheckBoxTh>
         ) : (
           <CheckBoxTd
@@ -92,8 +92,7 @@ class Tr extends Component {
                 return
               }
 
-              this.context.onCheck(this.props.index, !this.state.checked)
-              this.setState({ checked: !this.state.checked })
+              this.context.onCheck(this.props.index)
             }}
           >
             <input
