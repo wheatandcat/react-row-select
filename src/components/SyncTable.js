@@ -27,11 +27,19 @@ export default class extends Component {
   state = { checkeds: [], rowCount: 0, checkAll: false }
 
   componentWillMount() {
-    this.setState({ checkeds: this.props.checkeds || [] })
+    this.setState({
+      checkeds: this.props.checkeds || [],
+      checkAll: this.props.checkeds.length === 0 ? false : this.state.checkAll,
+    })
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ checkeds: nextProps.checkeds || [] })
+    console.log(nextProps.checkeds)
+
+    this.setState({
+      checkeds: nextProps.checkeds || [],
+      checkAll: nextProps.checkeds.length === 0 ? false : this.state.checkAll,
+    })
   }
 
   onRowCount = async rowCount => {

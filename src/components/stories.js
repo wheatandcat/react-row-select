@@ -141,7 +141,10 @@ storiesOf("DefaultTable", module)
     </CustomTable>
   ))
   .add("CustomSyncTable", () => (
-    <CustomSyncTable onCheck={action("onCheck")} checkeds={[1, 2]}>
+    <CustomSyncTable
+      onCheck={action("onCheck")}
+      checkeds={array("checked", [1, 2])}
+    >
       <Thead>
         <Tr>
           <Th>id</Th>
