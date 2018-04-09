@@ -34,8 +34,6 @@ export default class extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.checkeds)
-
     this.setState({
       checkeds: nextProps.checkeds || [],
       checkAll: nextProps.checkeds.length === 0 ? false : this.state.checkAll,
